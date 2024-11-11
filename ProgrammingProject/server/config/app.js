@@ -4,10 +4,12 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
+let app = express();
+
 let mongoose = require('mongoose');
 let DB = require('./db');
 
-let surveyRouter = require('./routes/surveyRoutes');
+let surveyRouter = require('../routes/surveyRoutes');
 app.use('/api', surveyRouter);
 
 mongoose.connect(DB.URI);
@@ -20,7 +22,6 @@ mongoose.connect(DB.URI,{useNewURIParse:true, useUnifiedTopology:true});
 
 let indexRouter = require('../routes/index');
 
-let app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, '../views'));

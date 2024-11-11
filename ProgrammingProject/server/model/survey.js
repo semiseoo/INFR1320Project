@@ -1,6 +1,6 @@
 const mongoose =  require("mongoose");
 
-let incidentModel = mongoose.Schema({
+let surveyModel = mongoose.Schema({
     Name: String,
     Description: String,
     Active: Boolean,
@@ -9,4 +9,4 @@ let incidentModel = mongoose.Schema({
 {
     Collection:"incidents"
 });
-module.exports = mongoose.model('Incident',incidentModel);
+module.exports = mongoose.model('Survey',surveyModel);
