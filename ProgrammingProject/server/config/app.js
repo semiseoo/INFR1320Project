@@ -7,6 +7,9 @@ let logger = require('morgan');
 let mongoose = require('mongoose');
 let DB = require('./db');
 
+let surveyRouter = require('./routes/surveyRoutes');
+app.use('/api', surveyRouter);
+
 mongoose.connect(DB.URI);
 let mongDB = mongoose.connection;
 mongDB.on('error',console.error.bind(console, 'Connection Error: '))
