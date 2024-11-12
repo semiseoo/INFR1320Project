@@ -1,16 +1,42 @@
 <!DOCTYPE html>
-
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> Create survey </title>
   <link rel="stylesheet" href="/stylesheets/style.css">
+  <title>Survey List</title>
 </head>
 <body>
   <h1>Survey List</h1>
 
+  <a href = "/survey/add" class="button"> Create a New Survey</a>
 
+  <table border = "1">
+    <thead>
+        <tr>
+            <th> Name </th>
+            <th> Description </th>
+            <th> Made on </th>
+            <th> Action </th>
+        </tr>
+    </thead>
+    <tbody>
 
+        <% surveys.forEach((survey) => { %>
+            <tr>
+                <td><%= survey.title %></td>
+                <td><%= survey.description %></td>
+                <td><%= survey.createdAt.toDateString() %></td>
+                <td>
+                    <a href="/survey/edit/<%= survey._id %>"> Edit</a> 
+                    <a href="/survey/delete/<%= survey._id %>" onclick = "return confirm('Are you sure')"> Delete</a>
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+  </table>
 
 
 </body>
+</html>

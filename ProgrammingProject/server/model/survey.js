@@ -4,9 +4,9 @@ let surveyModel = mongoose.Schema({
     Name: String,
     Description: String,
     Active: Boolean,
-    questions : [{type: String}],
+    questions : [{type: String}] ,
 },
 {
-    Collection:"incidents"
+    Collection:"survey"
 });
-module.exports = mongoose.model('Survey',surveyModel);
+module.exports = mongoose.model('Survey',surveyModel );
