@@ -3,7 +3,6 @@ let router = express.Router();
 let mongoose = require('mongoose');
 
 let Survey = require('../model/survey');
-const survey = require('../model/survey');
 let surveyController = require('../controllers/survey.js')
 
 router.post('/survey', surveyController.createSurvey);
