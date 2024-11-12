@@ -7,6 +7,6 @@ let surveyModel = mongoose.Schema({
     questions : [{type: String}] ,
 },
 {
-    Collection:"survey"
+    Collection:"surveys"
 });
-module.exports = mongoose.model('Survey',surveyModel );
+module.exports = mongoose.model('Survey',surveyModel);

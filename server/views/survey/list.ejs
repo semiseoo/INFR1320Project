@@ -3,16 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Create survey </title>
   <link rel="stylesheet" href="/stylesheets/style.css">
   <title>Survey List</title>
 </head>
 <body>
   <h1>Survey List</h1>
-
-  <a href = "/survey/add" class="button"> Create a New Survey</a>
-
-  <table border = "1">
+  <table class = "table table-bordered table-striped table-hover">
     <thead>
         <tr>
             <th> Name </th>
@@ -20,14 +16,15 @@
             <th> Made on </th>
             <th> Action </th>
         </tr>
+        
     </thead>
     <tbody>
 
-        <% surveys.forEach((survey) => { %>
+        <% Surveylist.forEach((survey) => { %>
             <tr>
                 <td><%= survey.title %></td>
                 <td><%= survey.description %></td>
-                <td><%= survey.createdAt.toDateString() %></td>
+                <td><%= survey.active %></td>
                 <td>
                     <a href="/survey/edit/<%= survey._id %>"> Edit</a> 
                     <a href="/survey/delete/<%= survey._id %>" onclick = "return confirm('Are you sure')"> Delete</a>
@@ -37,6 +34,10 @@
     </tbody>
   </table>
 
+  <h1>Add Survey</h1>
+  <a href = "/add" class = "btn btn-primary" role = "button">
+      <i class = "fas fa-plus-circle"></i> Add Survey
+  </a>
 
 </body>
 </html>

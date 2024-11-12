@@ -9,9 +9,9 @@
 <body>
   <h1>Create a New Survey</h1>
   
-  <form action="/survey" method="POST">
-    <label for="title">Title:</label>
-    <input type="text" id="title" name="title" required>
+  <form action="/list" method="POST">
+    <label for="Name">Name:</label>
+    <input type="text" id="Name" name="Name" required>
     
     <br>
 
@@ -25,13 +25,13 @@
         <option value = "true"> yes </option>
         <option value = "false"> No </option>
     </select>
-    
+    <br>
 
     <button type="submit">Create Survey</button>
   </form>
 
   <br>
-  <a href = "/survey/list">See all Surveys</a>
+  <a href = "/list">See all Surveys</a>
 
 </body>
 </html>
