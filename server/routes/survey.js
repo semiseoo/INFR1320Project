@@ -2,20 +2,19 @@ let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
 let Survey = require('../model/survey');
-const survey = require('../model/survey');
+//const survey = require('../model/survey');
 let surveyController = require('../controllers/survey.js');
 
 
 router.get('/',async(req,res,next)=>{
     try{
-        const SurveyList = await Survey.find()
         res.render('survey/list',{
             title:'Surveys',
             SurveyList:SurveyList
         })}
         catch(err){
             console.error(err);
-            res.render('survey/list',{
+            res.render('/list',{
                 error:'Error on the server'
             })
         }

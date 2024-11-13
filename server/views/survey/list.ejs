@@ -20,14 +20,14 @@
     </thead>
     <tbody>
 
-        <% Surveylist.forEach((survey) => { %>
+        <% SurveyList.forEach((SurveyList) => { %>
             <tr>
-                <td><%= survey.title %></td>
-                <td><%= survey.description %></td>
-                <td><%= survey.active %></td>
+                <td><%= SurveyList.title %></td>
+                <td><%= SurveyList.description %></td>
+                <td><%= SurveyList.active %></td>
                 <td>
-                    <a href="/survey/edit/<%= survey._id %>"> Edit</a> 
-                    <a href="/survey/delete/<%= survey._id %>" onclick = "return confirm('Are you sure')"> Delete</a>
+                    <a href="/list/edit/<%= survey._id %>"> Edit</a> 
+                    <a href="/list/delete/<%= survey._id %>" onclick = "return confirm('Are you sure')"> Delete</a>
                 </td>
             </tr>
         <% }) %>
