@@ -1,12 +1,11 @@
-const mongoose =  require("mongoose");
+const mongoose = require("mongoose");
 
 let surveyModel = mongoose.Schema({
     Name: String,
     Description: String,
-    Active: Boolean,
-    questions : [{type: String}] ,
+    Active: String
 },
 {
-    Collection:"surveys"
+    collection:"Surveys"
 });
-module.exports = mongoose.model('Survey',surveyModel);
+module.exports =mongoose.model('Survey',surveyModel);

@@ -1,43 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/stylesheets/style.css">
-  <title>Survey List</title>
-</head>
-<body>
-  <h1>Survey List</h1>
-  <table class = "table table-bordered table-striped table-hover">
-    <thead>
-        <tr>
-            <th> Name </th>
-            <th> Description </th>
-            <th> Made on </th>
-            <th> Action </th>
-        </tr>
-        
-    </thead>
-    <tbody>
-
-        <% SurveyList.forEach((SurveyList) => { %>
-            <tr>
-                <td><%= SurveyList.title %></td>
-                <td><%= SurveyList.description %></td>
-                <td><%= SurveyList.active %></td>
-                <td>
-                    <a href="/list/edit/<%= survey._id %>"> Edit</a> 
-                    <a href="/list/delete/<%= survey._id %>" onclick = "return confirm('Are you sure')"> Delete</a>
-                </td>
-            </tr>
-        <% }) %>
-    </tbody>
-  </table>
-
-  <h1>Add Survey</h1>
-  <a href = "/add" class = "btn btn-primary" role = "button">
-      <i class = "fas fa-plus-circle"></i> Add Survey
-  </a>
-
-</body>
-</html>
+<%- include ../Partials/header.ejs%>
+<%- include ../Partials/main_nav.ejs%>
+<main class="container">
+    <div class="row">
+        <div class="offset-md-1 col-md-10">
+            <h1><%= title %></h1>
+            <br>
+            <a href="/surveyslist/add" class="btn btn-primary" role="button">
+                <i class="fas fa-plus-circle"></i> Add Survey
+            </a>
+            <table class="table table-bordered table-striped table-hover">
+                <tr class="d-flex">
+                    <th class="text-center col-2">Name</th>
+                    <th class="col-4">Description</th>
+                    <th class="text-center col-1">Active</th>
+                </tr>
+                <% for(let count=0;count<SurveyList.length;count++) { %>
+                <tr class="d-flex">
+                    <td class="text-center col-2"><%= SurveyList[count].Name %></td>
+                    <td class="col-4"><%= SurveyList[count].Description %> </td>
+                    <td class="text-center col-1"><%= SurveyList[count].Active %></td>
+                    <td class="text-center col-1">
+                        <a href="/surveyslist/edit/<%= SurveyList[count]._id%>"
+                            class="btn btn-primary btn-sm">
+                        <i class="fas fa-pencil-alt"></i>Edit
+                    </a>
+                    </td>
+                    <td class="text-center col-1">
+                        <a href="/surveyslist/delete/<%= SurveyList[count]._id%>"
+                            class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash-alt"></i>Delete
+                    </a>
+                    </td>
+                </tr>    
+                    <%} %>
+            </table>
+        </div>
+    </div>
+</main>
+<%- include ../Partials/footer.ejs%>

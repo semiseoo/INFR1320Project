@@ -9,25 +9,20 @@ let indexRouter = require('../routes/index');
 let usersRouter = require('../routes/users');
 let surveyRouter = require('../routes/survey');
 
+
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
 
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
 let DB = require('./db');
 
-app.use('/api', surveyRouter);
-
 mongoose.connect(DB.URI);
-let mongDB = mongoose.connection;
-mongDB.on('error',console.error.bind(console, 'Connection Error: '))
-mongDB.once('open', ()=>{
-  console.log('connected to the MongoDB')
+let mongoDB = mongoose.connection;
+mongoDB.on('error',console.error.bind(console,'Connection Error'));
+mongoDB.once('open',()=>{
+  console.log("Connected with the MongoDB")
 });
-mongoose.connect(DB.URI,{useNewURIParse:true, useUnifiedTopology:true});
-
-
-// view engine setup
-
+mongoose.connect(DB.URI,{useNewURIParser:true,useUnifiedTopology:true})
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -38,22 +33,19 @@ app.use(express.static(path.join(__dirname, '../../node_modules')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/list',surveyRouter);
+app.use('/surveyslist',surveyRouter);
 
-// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error',{title:'Error'});
 });
 
 module.exports = app;

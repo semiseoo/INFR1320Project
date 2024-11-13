@@ -1,28 +1,29 @@
-<!DOCTYPE html>
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Create survey </title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
-</head>
-<body>
-<div class = "container">
-    <h1> Edit Item </h1>
-    <form action = "/update/<% = item._id %>" method = "POST">
-
-        <input type = "hidden" name = "id" value = "%= item._id %>">
-
-        <div class = "form-groups">
-            <label for = "title"> Title </label>
-            <input type = "text" id = "title" name = "title" value = "<%= item.title %>" required>
+<%- include ../Partials/header.ejs%>
+<%- include ../Partials/main_nav.ejs%>
+<!--Content for the edit Operation-->
+<div class="container"></div>
+    <div class="row">
+        <div class="offset-md-3 col-md-6">
+            <h1><%= title %></h1>
+            <form class="form" method="POST">
+                <div class="form-group">
+                    <label for="nameTextField">Survey Name</label>
+                    <input type="text" class="form-control" id="nameTextField" placeholder="Enter the Survey Name" name="Name" value="<%= Survey.Name %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="descriptionTextArea">Survey Description</label>
+                    <textarea type="text" class="form-control" id="descriptionTextArea"  placeholder="enter the Survey Description" name="Description" required><%= Survey.Description %></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="nameTextField">Survey Active</label>
+                    <input type="text" class="form-control" id="nameTextField" placeholder="Enter if the survey is active or not" name="Active" value="<%= Survey.Active %>" required>
+                </div>
+                <button class="btn btn-primary" type="submit">Submit
+                <i class="fas fa-edit"></i></button>  
+                <button class="btn btn-warning" type="submit">Cancel
+                    <i class="fas fa-undo"></i></button>    
+            </form>
         </div>
-
-        <div class = "form-groups">
-            <label for = " description"> Decsription</label>
-            <textarea id = "description" name = "description" required><%= item.description %></textarea>
-        </div>
-        <button type = "submit" class = "submit-btn"> Submit </button>
-    </form>
+    </div>
 </div>
-</body>
+<%- include ../Partials/footer.ejs%>

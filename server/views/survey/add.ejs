@@ -1,37 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Create survey </title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
-</head>
-<body>
-  <h1>Create a New Survey</h1>
-  
-  <form action="/list" method="POST">
-    <label for="Name">Name:</label>
-    <input type="text" id="Name" name="Name" required>
-    
-    <br>
-
-    <label for="description">Description:</label>
-    <textarea id="description" name="description" required></textarea>
-    
-    <br>
-
-    <label for="active">Is this survey active?: </label>
-    <select id = "active" name = "active" required>
-        <option value = "true"> yes </option>
-        <option value = "false"> No </option>
-    </select>
-    <br>
-
-    <button type="submit">Create Survey</button>
-  </form>
-
-  <br>
-  <a href = "/list">See all Surveys</a>
-
-</body>
-</html>
+<%- include ../Partials/header.ejs%>
+<%- include ../Partials/main_nav.ejs%>
+<div class="container">
+    <div class="row">
+        <div class="offset-md-3 col-md-6">
+            <h1><%= title %></h1>
+            <form class="form" method="POST">
+                <div class="form-group">
+                    <label for="nameTextField">Survey Name</label>
+                    <input type="text" class="form-control" id="nameTextField" placeholder="Enter the Survey Title" name="Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="descriptionTextArea">Survey Description</label>
+                    <textarea type="text" class="form-control" id="descriptionTextArea"  placeholder="enter the Survey Description" name="Description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="nameTextField">Active</label>
+                    <input type="text" class="form-control" id="nameTextField" placeholder="Enter if the survey is active or not" name="Active" required>
+                </div>
+                <button class="btn btn-primary" type="submit">Submit
+                <i class="fas fa-edit"></i></button>  
+                <button class="btn btn-warning" type="submit">Cancel
+                    <i class="fas fa-undo"></i></button>    
+            </form>
+        </div>
+    </div>
+</div>
+<%- include ../Partials/footer.ejs%>
