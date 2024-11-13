@@ -8,7 +8,7 @@ const survey = require('../model/survey');
 router.get('/',async(req,res,next)=>{
 try{
     const SurveyList = await Survey.find();
-    res.render('Survey/list',{
+    res.render('/surveyslist',{
         title:'Surveys',
         SurveyList:SurveyList
     })}
