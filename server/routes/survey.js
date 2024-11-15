@@ -20,6 +20,7 @@ try{
     }
     });
 
+    
 router.get('/add',async(req,res,next)=>{
     try{
         res.render('Survey/add',{
