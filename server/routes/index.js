@@ -5,27 +5,42 @@ let User = userModel.User;
 const passport = require('passport');
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Home' });
+  res.render('index', { 
+    title: 'Home' ,
+    displayName: req.user ? req.user.displayName:''
+  });
 });
 
 router.get('/home', function(req, res, next) {
-  res.render('index', { title: 'Home' });
+  res.render('index', { 
+    title: 'Home' ,
+    displayName: req.user ? req.user.displayName:''
+  });
 });
 
 router.get('/aboutus', function(req, res, next) {
-  res.render('index', { title: 'About us' });
+  res.render('index', { 
+    title: 'About us',
+    displayName: req.user ? req.user.displayName:''
+  });
 });
 
 router.get('/products', function(req, res, next) {
-  res.render('index', { title: 'Products' });
+  res.render('index', { title: 'Products',
+    displayName: req.user ? req.user.displayName:''
+  });
 });
 
 router.get('/service', function(req, res, next) {
-  res.render('index', { title: 'Service' });
+  res.render('index', { title: 'Service' ,
+    displayName: req.user ? req.user.displayName:''
+  });
 });
 
 router.get('/contactus', function(req, res, next) {
-  res.render('index', { title: 'Contact Us' });
+  res.render('index', { title: 'Contact Us' ,
+    displayName: req.user ? req.user.displayName:''
+  });
 });
 
 router.get('/login',function(req,res,next){

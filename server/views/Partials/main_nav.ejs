@@ -23,24 +23,23 @@
             <% } %>  
             <i class="fa-solid fa-clipboard-list"></i> Surveys</a>
           </li>
+
           <% if(typeof displayName == 'string' && displayName) { %>
-              <li class = "nav-item">
+            <li class = "nav-item">
               <a href = "/logout" class = "nav-link">
                 <i class = "fas fa-sign-out-alt"></i> Logout
               </a>
             </li>
-              <li class = "navbar-text">
-              <i class = "fas fa-lg fa-user"></i>
-            Welcome, <%= displayName %>
+            <li class = "navbar-text">
+              <i class = "fas fa-lg fa-user"></i> Welcome, <%= displayName %>
             </li>
-
           <% } else {%>
             <li class = "nav-item">
               <a href = "/login" class = "nav-link">
                 <i class = "fas fa-lg fa-sign-in-alt"></i> Login
               </a>
             </li>
-            <% } %>
+          <% } %>
         </ul>
       </div>
     </div>
