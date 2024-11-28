@@ -2,41 +2,50 @@ var express = require('express');
 var router = express.Router();
 let mongoose = require('mongoose');
 let Survey = require('../model/survey');
-const survey = require('../model/survey');
 //let surveyController = require('../controllers/survey.js')
+
+function isAuthenticated(req, res,next) {
+    if (req.isAuthenticated()) {
+      return next(); 
+    }
+    req.flash('loginMessage', 'Log in/Register to access');
+    res.redirect('/login');
+  }
 
 router.get('/',async(req,res,next)=>{
 try{
     const SurveyList = await Survey.find();
     res.render('Survey/list',{
         title:'Surveys',
-        SurveyList:SurveyList
-    })}
+        SurveyList:SurveyList,
+        displayName: req.user ? req.user.displayName: ''
+    });}
     catch(err){
         console.error(err);
         res.render('Survey/list',{
-            error:'Error on the server'
+            error:'Error on the server',
+            displayName: req.user ? req.user.displayName: ''
         })
     }
     });
 
     
-router.get('/add',async(req,res,next)=>{
-    try{
-        res.render('Survey/add',{
-            title: 'Add Survey'
-        })
-    }
-    catch(err)
-    {
-        console.error(err);
-        res.render('Survey/list',{
-            error:'Error on the server'
-        })
-    }
+router.get('/add', isAuthenticated, async (req, res, next) => {
+  try {
+    res.render('Survey/add', {
+      title: 'Add Survey',
+      displayName: req.user ? req.user.displayName: ''
+    });
+  } catch (err) {
+    console.error(err);
+    res.render('Survey/list', {
+      error: 'Error on the server',
+      displayName: req.user ? req.user.displayName: ''
+    });
+  }
 });
 
-router.post('/add',async(req,res,next)=>{
+router.post('/add', isAuthenticated, async(req,res,next)=>{
     try{
         let newSurvey = Survey({
             "Name":req.body.Name,
@@ -51,19 +60,21 @@ router.post('/add',async(req,res,next)=>{
     {
         console.error(err);
         res.render('Survey/list',{
-            error:'Error on the server'
+            error:'Error on the server',
+            displayName: req.user ? req.user.displayName: ''
         })
     }
 });
 
-router.get('/edit/:id',async(req,res,next)=>{
+router.get('/edit/:id', isAuthenticated, async(req,res,next)=>{
     try{
         const id = req.params.id;
         const surveyToEdit= await Survey.findById(id);
         res.render('Survey/edit',
             {
                 title:'Edit Survey',
-                Survey:surveyToEdit
+                Survey:surveyToEdit,
+                displayName: req.user ? req.user.displayName: ''
             }
         )
     }
@@ -74,7 +85,7 @@ router.get('/edit/:id',async(req,res,next)=>{
     }
 });
 
-router.post('/edit/:id',async(req,res,next)=>{
+router.post('/edit/:id', isAuthenticated, async(req,res,next)=>{
     try{
         let id=req.params.id;
         let updatedSurvey = Survey({
@@ -90,11 +101,12 @@ router.post('/edit/:id',async(req,res,next)=>{
     catch(err){
         console.error(err);
         res.render('Survey/list',{
-            error:'Error on the server'
+            error:'Error on the server',
+            displayName: req.user ? req.user.displayName: ''
         })
     }
 });
-router.get('/delete/:id',async(req,res,next)=>{
+router.get('/delete/:id', isAuthenticated, async(req,res,next)=>{
     try{
         let id=req.params.id;
         Survey.deleteOne({_id:id}).then(()=>{
@@ -104,7 +116,8 @@ router.get('/delete/:id',async(req,res,next)=>{
     catch(error){
         console.error(err);
         res.render('Survey/list',{
-            error:'Error on the server'
+            error:'Error on the server',
+            displayName: req.user ? req.user.displayName: ''
         })
     }
 });
