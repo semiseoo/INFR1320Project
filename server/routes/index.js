@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+let userModel = require('../model/User');
+let User = userModel.User;
+const passport = require('passport');
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Home' });
@@ -58,8 +61,8 @@ router.post('/login', function(req,res,next){
       }
       return res.redirect('/surveyslist')
     })
-  })(req,res,next)
-})
+  })(req,res,next);
+});
 router.get('/register',function(req,res,next){
   if(!req.user)
   {
@@ -79,12 +82,12 @@ router.post('/register',function(req,res,next){
     //password:req.body.password,
     email:req.body.email,
     displayName:req.body.displayName
-  })
+  });
   User.register(newUser,req.body.password,(err) =>{
     if(err)
     {
       console.log("Error:Inserting the new User");
-      if(err.name=="UserExistError")
+      if(err.name=="UserExistsError")
       {
         req.flash('registerMessage',
           'Registration Error: User already exist')

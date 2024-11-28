@@ -3,11 +3,16 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+let passport = require('passport');
+let session = require('express-session');
+let passportLocal = require('passport-local');
+let localStrategy = passportLocal.Strategy;
 
 let app = express();
 let cors = require('cors');
 let userModel = require('../model/User');
 let User = userModel.User;
+
 let indexRouter = require('../routes/index');
 let usersRouter = require('../routes/users');
 let surveyRouter = require('../routes/survey');
@@ -15,9 +20,6 @@ let surveyRouter = require('../routes/survey');
 
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
-let session = require('express-session');
-let passport = require('passport');
-let passportLocal = require('passport-local');
 let flash = require('connect-flash');
 passport.use(User.createStrategy());
 const mongoose = require('mongoose');
@@ -32,10 +34,10 @@ mongoDB.once('open',()=>{
 mongoose.connect(DB.URI,{useNewURIParser:true,useUnifiedTopology:true})
 
 app.use(session({
-  secret:"SomeSecret",
+  secret:'SomeSecret',
   saveUninitialized: false,
   resave:false
-}))
+}));
 
 app.use(flash());
 
