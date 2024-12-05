@@ -3,7 +3,7 @@
 <main class="container">
     <div class="row">
         <div class="offset-md-1 col-md-10">
-            <h1><%= title %></h1>
+            <h1 id = "title"><%= title %></h1>
             <br>
             <% if(typeof displayName == 'string' && displayName) { %>
             <a href="/surveyslist/add" class="btn btn-primary" role="button">
@@ -41,14 +41,14 @@
             <table class="table table-bordered table-striped table-hover">
                 <tr class="d-flex">
                     <th class="text-center col-2">Name</th>
-                    <th class="col-6">Description</th>
+                    <th class="col-8">Description</th>
                     <th class="text-center col-2">Active</th>
 
                 </tr>
                 <% for(let count=0;count<SurveyList.length;count++) { %>
                 <tr class="d-flex">
                     <td class="text-center col-2"><%= SurveyList[count].Name %></td>
-                    <td class="col-6"><%= SurveyList[count].Description %> </td>
+                    <td class="col-8"><%= SurveyList[count].Description %> </td>
                     <td class="text-center col-2"><%= SurveyList[count].Active %></td>
                     </a>
                 </tr>    

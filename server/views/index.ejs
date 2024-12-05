@@ -1,5 +1,16 @@
 <%- include Partials/header.ejs%>
 <%- include Partials/main_nav.ejs%>
-    <h1><%= title %></h1>
-    <p>This is the <%= title %> page!</p>
+    <h1 id = "title"><%= title %></h1>
+    <% if(typeof displayName == 'string' && displayName) { %>
+    <br>
+    <p>Welcome, <%= displayName %></p>
+
+    <% } else { %>
+    <p>Please make an account or log in</p>
+    <div class = "homeButtons">
+    <a href = "/login" class="btn bg-info text-black" >Login</a>
+    <br>
+    <a  id = "link" href = "/register" class="btn bg-info text-black" >Register</a>
+    </div>
+    <% } %>
 <%- include Partials/footer.ejs%>
